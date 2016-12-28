@@ -2,26 +2,24 @@
  *  Editor view of the browser
  */
 
-#include <time.h>
+#include "editor.h"
 
-typedef struct {
-    // TODO
-} erow;
+void
+init_editor(struct editor_config *Ecfg)
+{
+    Ecfg->cx = 0;
+    Ecfg->cy = 0;
+    Ecfg->rowoff = 0;
+    Ecfg->coloff = 0;
+    Ecfg->numrows = 0;
+    Ecfg->row = NULL;
+    Ecfg->dirty = 0;
+    Ecfg->fname = NULL;
+    Ecfg->syntax = NULL;
+}
 
-struct editor_config {
-    char *fname;
-    char statusmsg[80];
-    time_t statusmsg_time;
-    int cx, cy;
-    int rowoff;
-    int coloff;
-    int screenrows;
-    int screencols;
-    int numrows;
-    erow *row;
-    int rawmode;
-    int dirty;
-    struct editor_syntax *syntax;
-};
-
-static struct editor_config E;
+void
+editor_select_highlight(const char *fname)
+{
+    fprintf(stdout, KCYN "%s" KNRM "\n", fname);
+}
